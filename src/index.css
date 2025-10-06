@@ -1,0 +1,90 @@
+@import 'tailwindcss';
+
+:root {
+  --color-white: #fff;
+  --color-white-backround: #f4f4f4;
+  --color-black: #00000;
+
+  --font-family: 'Roboto';
+}
+
+@font-face {
+  font-family: 'Roboto';
+  src: url('/fonts/Roboto-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Roboto';
+  src: url('/fonts/Roboto-Medium.woff2') format('woff2');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Roboto';
+  src: url('/fonts/Roboto-SemiBold.woff2') format('woff2');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Roboto';
+  src: url('/fonts/Roboto-Bold.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@layer base {
+  html {
+    font-family: var(--font-family), sans-serif;
+  }
+
+  body {
+    font-family: inherit;
+    font-size: 18px;
+    color: var(--color-black);
+    background-color: var(--color-white-backround);
+  }
+}
+
+@layer components {
+  @keyframes float {
+    0%,
+    100% {
+      transform: translateY(0px);
+    }
+    50% {
+      transform: translateY(-10px);
+    }
+  }
+
+  .animate-float {
+    animation: float 3s ease-in-out infinite;
+  }
+
+  .delay-75 {
+    animation-delay: 0.75s;
+  }
+
+  .delay-150 {
+    animation-delay: 1.5s;
+  }
+
+  .delay-300 {
+    animation-delay: 3s;
+  }
+
+  .delay-500 {
+    animation-delay: 5s;
+  }
+
+  .delay-700 {
+    animation-delay: 7s;
+  }
+}
