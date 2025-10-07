@@ -5,6 +5,7 @@ import { authService } from '@/services/auth.service.ts'
 
 export const requireAuth = async () => {
   const isVerified = await authService.verifyToken()
+
   if (!isVerified) {
     throw redirect('/auth')
   }
@@ -20,6 +21,7 @@ export const requireGuest = async () => {
 
 export const checkAuthAndRedirect = async () => {
   const isVerified = await authService.verifyToken()
+
   if (isVerified) {
     throw redirect(DASHBOARD_PAGES.HOME)
   } else {

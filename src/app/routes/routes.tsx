@@ -4,10 +4,12 @@ import {
   checkAuthAndRedirect,
   requireAuth,
   requireGuest,
-} from '@/app/routes/loaders.ts'
+} from '@/app/routes/loaders/auth.loader.ts'
+import DashboardLayout from '@/components/layouts/DashboardLayout.tsx'
+import Auth from '@/components/pages/Auth.tsx'
+import DashboardPage from '@/components/pages/DashboardPage.tsx'
+import Dashboards from '@/components/pages/Dashboards.tsx'
 import { DASHBOARD_PAGES } from '@/config/page.config.ts'
-import Auth from '@/pages/Auth.tsx'
-import Dashboard from '@/pages/Dashboard.tsx'
 
 export const router = createBrowserRouter([
   {
@@ -26,10 +28,15 @@ export const router = createBrowserRouter([
       {
         path: DASHBOARD_PAGES.HOME,
         loader: requireAuth,
+        element: <DashboardLayout />,
         children: [
           {
             index: true,
-            element: <Dashboard />,
+            element: <Dashboards />,
+          },
+          {
+            path: `${DASHBOARD_PAGES.HOME}/:dashboardId`,
+            element: <DashboardPage />,
           },
         ],
       },

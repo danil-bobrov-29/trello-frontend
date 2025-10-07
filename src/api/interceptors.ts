@@ -76,7 +76,7 @@ axiosClassic.interceptors.response.use(
   }
 )
 
-axiosWithAuth.interceptors.response.use(
+axiosWithAuth.interceptors.request.use(
   (config) => {
     const accessToken = getAccessToken()
 
@@ -86,6 +86,13 @@ axiosWithAuth.interceptors.response.use(
 
     return config
   },
+  (error) => {
+    return Promise.reject(error)
+  }
+)
+
+axiosWithAuth.interceptors.response.use(
+  (response) => response,
   async (error) => {
     const originalRequest = error.config
 
@@ -93,6 +100,7 @@ axiosWithAuth.interceptors.response.use(
       error?.response?.status === 401 ||
       errorCatch(error) === 'Invalid token'
     ) {
+      originalRequest._isRetry = true
       try {
         await authService.getNewTokens()
         return axiosWithAuth.request(originalRequest)
