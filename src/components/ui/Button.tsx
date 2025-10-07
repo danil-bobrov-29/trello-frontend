@@ -1,17 +1,19 @@
 import cn from 'clsx'
+import { type LucideIcon } from 'lucide-react'
 
 import type { ReactNode } from 'react'
 
 interface IProps {
-  children: ReactNode
+  children?: ReactNode
   target?: string
   href?: string
   type?: 'button' | 'submit' | 'reset'
   className?: string
   onClick?: () => void
-  mode?: 'default' | 'transparent'
+  mode?: 'default' | 'transparent' | 'link'
   isLoading?: boolean
   disabled?: boolean
+  icon?: LucideIcon
 }
 
 const Button = ({
@@ -22,6 +24,7 @@ const Button = ({
   className,
   mode = 'default',
   onClick,
+  icon: Icon,
   isLoading = false,
   disabled = false,
 }: IProps) => {
@@ -33,11 +36,12 @@ const Button = ({
   return (
     <Components
       {...paramsProps}
-      className={cn(className, {
-        'w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-colors':
+      className={cn(className, 'rounded-md duration-200', {
+        'w-full flex justify-center  border border-transparent py-2 px-4 shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-colors':
           mode === 'default',
         'text-blue-600 hover:text-blue-500 transition-colors font-semibold':
-          mode === 'transparent',
+          mode === 'link',
+        'p-1 text-gray-500 hover:bg-gray-300': mode === 'transparent',
       })}
     >
       {isLoading ? (
@@ -46,7 +50,10 @@ const Button = ({
           <span className="ml-2 opacity-75">{children}</span>
         </div>
       ) : (
-        children
+        <div className="flex items-center justify-center gap-x-2">
+          {Icon && <Icon />}
+          {children && <span>{children}</span>}
+        </div>
       )}
     </Components>
   )

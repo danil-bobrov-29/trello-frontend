@@ -20,7 +20,7 @@ const AuthForm = () => {
           </h2>
           <p className="mt-2 text-sm text-gray-600">
             {isLogin ? 'Нет аккаунта? ' : 'Уже есть аккаунт? '}
-            <Button onClick={() => setIsLogin(!isLogin)} mode="transparent">
+            <Button onClick={() => setIsLogin(!isLogin)} mode="link">
               {isLogin ? 'Зарегистрироваться' : 'Войти'}
             </Button>
           </p>
