@@ -7,10 +7,7 @@ import { useQuery } from '@tanstack/react-query'
 export const useDashboardQuery = () => {
   const { data, isLoading } = useQuery<AxiosResponse<IDashboardResponse[]>>({
     queryKey: ['dashboards'],
-    queryFn: async () => {
-      await new Promise((resolve) => setTimeout(resolve, 3000))
-      return dashboardService.getDashboards()
-    },
+    queryFn: () => dashboardService.getDashboards(),
     refetchInterval: 10000,
     refetchIntervalInBackground: true,
   })

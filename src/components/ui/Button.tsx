@@ -10,7 +10,7 @@ interface IProps {
   type?: 'button' | 'submit' | 'reset'
   className?: string
   onClick?: () => void
-  mode?: 'default' | 'transparent' | 'link'
+  mode?: 'default' | 'transparent' | 'link' | 'secondary'
   isLoading?: boolean
   disabled?: boolean
   icon?: LucideIcon
@@ -36,12 +36,14 @@ const Button = ({
   return (
     <Components
       {...paramsProps}
-      className={cn(className, 'rounded-md duration-200', {
-        'w-full flex justify-center  border border-transparent py-2 px-4 shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-colors':
+      className={cn(className, 'font-medium rounded-md duration-200', {
+        'flex-1 border px-4 py-2 border-transparent shadow-sm text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-colors':
           mode === 'default',
-        'text-blue-600 hover:text-blue-500 transition-colors font-semibold':
+        'p-1 text-blue-600 hover:text-blue-500 transition-colors font-semibold cursor-pointer':
           mode === 'link',
-        'p-1 text-gray-500 hover:bg-gray-300': mode === 'transparent',
+        'p-2 text-gray-500 hover:bg-gray-300': mode === 'transparent',
+        'flex-1 text-gray-700 px-4 py-2 bg-gray-100 hover:bg-gray-200 rounded-lg transition-colors':
+          mode === 'secondary',
       })}
     >
       {isLoading ? (

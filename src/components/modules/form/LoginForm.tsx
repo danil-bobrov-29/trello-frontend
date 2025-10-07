@@ -48,9 +48,11 @@ const LoginForm = () => {
         register={register}
         placeholder="Введите пароль"
       />
-      <Button type="submit" isLoading={isPending}>
-        Войти
-      </Button>
+      <div className="flex justify-center">
+        <Button type="submit" isLoading={isPending}>
+          Войти
+        </Button>
+      </div>
     </form>
   )
 }
