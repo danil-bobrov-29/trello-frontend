@@ -133,9 +133,11 @@ const RegisterForm = () => {
           validate: (value) => value === watchPassword || 'Пароли не совпадают',
         }}
       />
-      <Button type="submit" isLoading={isPending}>
-        Зарегистрироваться
-      </Button>
+      <div className="flex justify-center">
+        <Button type="submit" isLoading={isPending}>
+          Зарегистрироваться
+        </Button>
+      </div>
     </form>
   )
 }

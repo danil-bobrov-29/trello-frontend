@@ -1,3 +1,4 @@
+import cn from 'clsx'
 import type {
   FieldValues,
   Path,
@@ -59,6 +60,7 @@ interface IProps<IName extends FieldValues> {
   defaultValue?: string
   placeholder?: string
   errorMessage?: string
+  isTextarea?: boolean
 }
 
 const Field = <IName extends FieldValues>({
@@ -72,20 +74,28 @@ const Field = <IName extends FieldValues>({
   register,
   options,
   errorMessage,
+  isTextarea = false,
 }: IProps<IName>) => {
   const [showPassword, setShowPassword] = useState(type)
+
+  const Component = isTextarea ? 'textarea' : 'input'
 
   return (
     <div>
       {!!label && <label htmlFor={id}>{label}</label>}
       <div className="relative">
-        <input
+        <Component
           id={id}
           type={showPassword}
           defaultValue={defaultValue}
           onChange={onChange}
           {...(name && register(name, options))}
-          className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-blue-500 focus:border-blue-500 transition-colors"
+          className={cn(
+            'appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-blue-500 focus:border-blue-500 transition-colors',
+            {
+              'h-32 resize-none': isTextarea,
+            }
+          )}
           placeholder={placeholder}
         />
         {type === 'password' && (
