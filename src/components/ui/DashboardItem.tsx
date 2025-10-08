@@ -1,9 +1,10 @@
 import { ArrowRight, Pencil, X } from 'lucide-react'
 import { Link } from 'react-router-dom'
 
-import { useState } from 'react'
+import { memo, useState } from 'react'
 
 import DeleteDashboardModal from '@/components/modules/modal/DeleteDashboardModal.tsx'
+import EditorDashboardModal from '@/components/modules/modal/EditorDashboardModal.tsx'
 import Button from '@/components/ui/Button.tsx'
 import { DASHBOARD_PAGES } from '@/config/page.config.ts'
 import { useDeleteDashboard } from '@/hooks/useDeleteDashboard.ts'
@@ -14,13 +15,16 @@ interface IProps {
   description?: string
 }
 
-const DashboardItem = ({ title, description, id }: IProps) => {
-  const [isOpenModal, setIsOpenModal] = useState(false)
+const DashboardItem = memo(({ title, description, id }: IProps) => {
+  const [isOpenDeleteModal, setIsOpenDeleteModal] = useState(false)
+  const [isOpenEditorModal, setIsOpenEditorModal] = useState(false)
   const { deleteDashboard, isPending } = useDeleteDashboard()
+
+  console.log('RENDER DASHBOARD ITEM', title)
 
   const handlerDelete = () => {
     deleteDashboard(id)
-    setIsOpenModal(false)
+    setIsOpenDeleteModal(false)
   }
 
   return (
@@ -43,22 +47,30 @@ const DashboardItem = ({ title, description, id }: IProps) => {
         className="absolute right-12 top-1"
         icon={Pencil}
         mode="transparent"
+        onClick={() => setIsOpenEditorModal(true)}
       />
       <Button
         className="absolute right-1 top-1"
         icon={X}
         mode="transparent"
-        onClick={() => setIsOpenModal(true)}
+        onClick={() => setIsOpenDeleteModal(true)}
+      />
+      <EditorDashboardModal
+        isOpen={isOpenEditorModal}
+        dashboardId={id}
+        onClose={() => setIsOpenEditorModal(false)}
       />
       <DeleteDashboardModal
-        isOpen={isOpenModal}
+        isOpen={isOpenDeleteModal}
         title={title}
-        onClose={() => setIsOpenModal(false)}
+        onClose={() => setIsOpenDeleteModal(false)}
         handlerDelete={handlerDelete}
         isLoading={isPending}
       />
     </div>
   )
-}
+})
+
+DashboardItem.displayName = 'DashboardItem'
 
 export default DashboardItem

@@ -16,6 +16,10 @@ class DashboardService {
     return await axiosWithAuth.post(`${this.BASE_URL}`, data)
   }
 
+  async updateDashboard(dashboardId: string, data: TDashboardData) {
+    return await axiosWithAuth.patch(`${this.BASE_URL}/${dashboardId}`, data)
+  }
+
   async deleteDashboard(id: string) {
     return await axiosWithAuth.delete(`${this.BASE_URL}/${id}`)
   }
