@@ -1,13 +1,26 @@
-import { Suspense } from 'react'
+import { useParams } from 'react-router'
 
-import DashboardContent from '@/components/sections/DashboardContent.tsx'
+import TimeBlockTable from '@/components/modules/TimeBlockTable.tsx'
 import Spinner from '@/components/ui/Spiner.tsx'
+import { useTimeBlockQuery } from '@/hooks/useTimeBlockQuery.ts'
 
 const DashboardPage = () => {
+  const { dashboardId } = useParams()
+  const { data, isLoading } = useTimeBlockQuery(dashboardId as string)
+
+  if (isLoading) {
+    return <Spinner />
+  }
+
   return (
-    <Suspense fallback={<Spinner />}>
-      <DashboardContent />
-    </Suspense>
+    <>
+      <h2>{data?.dashboard.title}</h2>
+      {data?.timeBlocks ? (
+        <TimeBlockTable timeBlocks={data.timeBlocks} />
+      ) : (
+        <div>Контент заглушка</div>
+      )}
+    </>
   )
 }
 export default DashboardPage

@@ -8,6 +8,8 @@ export const useDashboardQueryById = (
   const { data, isLoading } = useQuery({
     queryKey: ['dashboard', dashboardId],
     queryFn: () => dashboardService.getDashboard(dashboardId),
+    staleTime: 5000,
+    refetchInterval: 10000,
     gcTime: 10000,
   })
 

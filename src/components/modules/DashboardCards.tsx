@@ -1,4 +1,4 @@
-import DashboardItem from '@/components/ui/DashboardItem.tsx'
+import DashboardItem from '@/components/modules/DashboardItem.tsx'
 import Spinner from '@/components/ui/Spiner.tsx'
 import { useDashboardQuery } from '@/hooks/useDashboardQuery.ts'
 
