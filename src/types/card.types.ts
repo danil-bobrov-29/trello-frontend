@@ -15,3 +15,10 @@ export type TCardForm = Pick<ICardResponse, 'title' | 'description' | 'dueDate'>
 export type TCardCreate = TCardForm & {
   order: number
 }
+
+export type TCardUpdate = Partial<
+  Pick<
+    ICardResponse,
+    'title' | 'description' | 'dueDate' | 'isCompleted' | 'order'
+  >
+>

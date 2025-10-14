@@ -31,7 +31,6 @@ const CardCreateForm = forwardRef<HTMLDivElement, IProps>(
     const onSubmit = (data: TCardForm) => {
       createCard({
         ...data,
-        dueDate: new Date(data.dueDate + 'T00:00:00.000Z').toISOString(),
         order: length,
       })
       onClose()

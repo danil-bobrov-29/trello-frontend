@@ -12,6 +12,7 @@ import type { ITimeBlockResponse } from '@/types/time-block.types.ts'
 interface IProps {
   timeBlock: ITimeBlockResponse
 }
+
 const TimeBlockColumn = ({ timeBlock }: IProps) => {
   const {
     elementRef,
@@ -70,10 +71,14 @@ const TimeBlockColumn = ({ timeBlock }: IProps) => {
           </Actions>
         </div>
       </header>
-      <div className="px-3 pb-3 space-y-3 max-h-[calc(100vh-200px)] overflow-y-auto">
-        {timeBlock.cards.map((card) => (
-          <Card key={card.id} card={card} />
-        ))}
+      <div className="px-3 pb-3 max-h-[calc(100vh-200px)] overflow-y-auto">
+        <ul className="space-y-3">
+          {timeBlock.cards.map((card) => (
+            <li key={card.id}>
+              <Card card={card} dashboardId={timeBlock.dashboardId} />
+            </li>
+          ))}
+        </ul>
       </div>
       <div className="p-3">
         {isShowCardForm ? (

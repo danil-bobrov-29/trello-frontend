@@ -5,7 +5,6 @@ import type { ITimeBlockAllResponse } from '@/types/time-block.types.ts'
 import { useQuery } from '@tanstack/react-query'
 
 export const useTimeBlockQuery = (dashboardId: string) => {
-  console.log('useTimeBlockQuery', dashboardId)
   const { data, isLoading, isSuccess } = useQuery<
     AxiosResponse<ITimeBlockAllResponse>
   >({

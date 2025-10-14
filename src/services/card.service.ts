@@ -1,5 +1,5 @@
 import { axiosWithAuth } from '@/api/interceptors.ts'
-import type { TCardCreate } from '@/types/card.types.ts'
+import type { TCardCreate, TCardUpdate } from '@/types/card.types.ts'
 
 class CardService {
   private BASE_URL(dashboardId: string) {
@@ -16,6 +16,13 @@ class CardService {
         timeBlockId,
       },
     })
+  }
+
+  async updateCard(dashboardId: string, cardId: string, data: TCardUpdate) {
+    return await axiosWithAuth.patch(
+      `${this.BASE_URL(dashboardId)}/${cardId}`,
+      data
+    )
   }
 }
 
