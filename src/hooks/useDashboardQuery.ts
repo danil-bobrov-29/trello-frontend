@@ -8,6 +8,7 @@ export const useDashboardQuery = () => {
   const { data, isLoading } = useQuery<AxiosResponse<IDashboardResponse[]>>({
     queryKey: ['dashboards'],
     queryFn: () => dashboardService.getDashboards(),
+    staleTime: 5000,
     refetchInterval: 10000,
     refetchIntervalInBackground: true,
   })

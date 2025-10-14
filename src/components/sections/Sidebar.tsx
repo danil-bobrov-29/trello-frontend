@@ -15,7 +15,7 @@ const Sidebar = () => {
   return (
     <aside
       className={cn(
-        'relative flex flex-col px-5 py-8 gap-y-8  bg-white border-r border-gray-200 shadow-sm rounded-r-4xl overflow-auto',
+        'relative flex flex-col px-5 py-8 gap-y-8 min-w-[250px] bg-white border-r border-gray-200 shadow-sm rounded-r-4xl overflow-auto',
         {
           hidden: !isOpen,
           'w-[250px]': isOpen,

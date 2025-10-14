@@ -19,7 +19,7 @@ const DashboardList = () => {
             <li key={dashboard.id}>
               <Link
                 to={`${DASHBOARD_PAGES.HOME}/${dashboard.id}`}
-                className="w-full px-3 py-2 text-gray-600 rounded-lg hover:bg-gray-100 transition-colors"
+                className="w-full px-3 py-2 text-gray-600 rounded-lg hover:bg-gray-100 transition-colors line-clamp-1"
               >
                 {dashboard.title}
               </Link>

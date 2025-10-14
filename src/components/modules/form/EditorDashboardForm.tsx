@@ -2,10 +2,21 @@ import { useForm } from 'react-hook-form'
 
 import Button from '@/components/ui/Button.tsx'
 import Field from '@/components/ui/Field.tsx'
-import { useCreateDashboard } from '@/hooks/useCreateDashboard.ts'
+import Spinner from '@/components/ui/Spiner.tsx'
+import { useDashboardQueryById } from '@/hooks/useDashboardQueryById.ts'
+import { useDashboardUpdate } from '@/hooks/useDashboardUpdate.ts'
 import type { TDashboardData } from '@/types/dashboard.types.ts'
 
-const CreateDashboardForm = ({ onClose }: { onClose: () => void }) => {
+interface IProps {
+  onClose: () => void
+  dashboardId: string
+}
+
+const EditorDashboardForm = ({ onClose, dashboardId }: IProps) => {
+  const { dashboardData, isLoading } = useDashboardQueryById(dashboardId)
+
+  const { updateDashboard, isPending } = useDashboardUpdate(dashboardId)
+
   const {
     register,
     reset,
@@ -13,12 +24,14 @@ const CreateDashboardForm = ({ onClose }: { onClose: () => void }) => {
     handleSubmit,
   } = useForm<TDashboardData>()
 
-  const { createDashboard, isPending } = useCreateDashboard()
-
   const handleCreateDashboard = (data: TDashboardData) => {
-    createDashboard(data)
+    updateDashboard(data)
     reset()
     onClose()
+  }
+
+  if (isLoading) {
+    return <Spinner />
   }
 
   return (
@@ -31,7 +44,8 @@ const CreateDashboardForm = ({ onClose }: { onClose: () => void }) => {
         id="title"
         register={register}
         name="title"
-        placeholder="Введите название рабочего пространства"
+        defaultValue={dashboardData.title}
+        placeholder="Изменить название рабочего пространства"
         errorMessage={errors.title?.message}
       />
 
@@ -40,7 +54,8 @@ const CreateDashboardForm = ({ onClose }: { onClose: () => void }) => {
         id="description"
         register={register}
         name="description"
-        placeholder="Добавьте описание (необязательно)"
+        defaultValue={dashboardData.description}
+        placeholder="Измение описание"
         errorMessage={errors.description?.message}
         isTextarea
       />
@@ -50,11 +65,11 @@ const CreateDashboardForm = ({ onClose }: { onClose: () => void }) => {
           Отмена
         </Button>
         <Button type="submit" isLoading={isPending}>
-          Создать
+          Изменить
         </Button>
       </div>
     </form>
   )
 }
 
-export default CreateDashboardForm
+export default EditorDashboardForm

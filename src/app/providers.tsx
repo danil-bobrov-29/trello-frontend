@@ -8,6 +8,8 @@ export function Providers({ children }: PropsWithChildren) {
     new QueryClient({
       defaultOptions: {
         queries: {
+          staleTime: Infinity,
+          refetchInterval: false,
           refetchOnWindowFocus: false,
         },
       },
