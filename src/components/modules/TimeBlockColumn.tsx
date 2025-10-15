@@ -1,5 +1,5 @@
 import cn from 'clsx'
-import { Palette, Pencil, Trash2 } from 'lucide-react'
+import { GripHorizontal, Palette, Pencil, Trash2 } from 'lucide-react'
 
 import CardCreateForm from '@/components/modules/form/CardCreateForm.tsx'
 import ActionButton from '@/components/ui/ActionButton.tsx'
@@ -8,6 +8,8 @@ import { Card } from '@/components/ui/Card.tsx'
 import { colorClasses } from '@/config/color.config.ts'
 import { useClickOutside } from '@/hooks/useClickOutside.ts'
 import type { ITimeBlockResponse } from '@/types/time-block.types.ts'
+import { useSortable } from '@dnd-kit/sortable'
+import { CSS } from '@dnd-kit/utilities'
 
 interface IProps {
   timeBlock: ITimeBlockResponse
@@ -25,15 +27,39 @@ const TimeBlockColumn = ({ timeBlock }: IProps) => {
     setIsOpen: setIsShowCardForm,
   } = useClickOutside()
 
+  const {
+    attributes,
+    listeners,
+    setNodeRef,
+    transform,
+    transition,
+    isDragging,
+  } = useSortable({ id: timeBlock.id, data: timeBlock })
+
+  const style = {
+    transform: CSS.Transform.toString(transform),
+    transition,
+    opacity: isDragging ? 0.5 : 1,
+  }
+
   return (
     <div
+      ref={setNodeRef}
+      style={style}
       className={cn(
         'min-w-80 w-80 flex-shrink-0 rounded-lg border-2 transition-all duration-200',
         colorClasses[timeBlock.color || 'GRAY']
       )}
     >
-      <header className="relative p-4">
-        <div className="flex items-center justify-between">
+      <header className="relative">
+        <div
+          {...attributes}
+          {...listeners}
+          className="flex justify-center items-center rounded-t hover:bg-gray-200 active:bg-gray-300 cursor-grab active:cursor-grabbing"
+        >
+          <GripHorizontal className="text-gray-500" />
+        </div>
+        <div className="flex items-center justify-between px-4 py-2">
           <div className="flex gap-x-3 items-center">
             <h3 className="flex-1 font-semibold text-gray-900 cursor-text select-none">
               {timeBlock.title}
