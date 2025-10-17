@@ -1,12 +1,12 @@
 import { useParams } from 'react-router'
 
-import TimeBlockTable from '@/components/modules/TimeBlockTable.tsx'
+import TimeBlockList from '@/components/modules/TimeBlockList'
 import Spinner from '@/components/ui/Spiner.tsx'
 import { useTimeBlockQuery } from '@/hooks/time-block/useTimeBlockQuery.ts'
 
 const DashboardPage = () => {
   const { dashboardId } = useParams()
-  const { data, isLoading } = useTimeBlockQuery(dashboardId as string)
+  const { data, isLoading } = useTimeBlockQuery(String(dashboardId))
 
   if (isLoading) {
     return <Spinner />
@@ -15,11 +15,13 @@ const DashboardPage = () => {
   return (
     <>
       <h2>{data?.dashboard.title}</h2>
-      {data?.timeBlocks ? (
-        <TimeBlockTable timeBlocks={data.timeBlocks} />
-      ) : (
-        <div>Контент заглушка</div>
-      )}
+      <div>
+        {data?.timeBlocks ? (
+          <TimeBlockList timeBlocks={data.timeBlocks} />
+        ) : (
+          <div>Контент заглушка</div>
+        )}
+      </div>
     </>
   )
 }

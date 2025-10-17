@@ -27,3 +27,8 @@ export interface ITimeBlockAllResponse {
   dashboard: Omit<IDashboardResponse, 'timeBlocks'>
   timeBlocks: ITimeBlockResponse[]
 }
+
+export type TTimeBlockUpdate = Partial<Pick<ITimeBlockResponse, 'title' | 'description' | 'order' | 'color'>>
+
+
+export type TimeBlockUpdateBatch = TTimeBlockUpdate & { id: string }[]

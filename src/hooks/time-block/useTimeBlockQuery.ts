@@ -8,7 +8,7 @@ export const useTimeBlockQuery = (dashboardId: string) => {
   const { data, isLoading, isSuccess } = useQuery<
     AxiosResponse<ITimeBlockAllResponse>
   >({
-    queryKey: ['dashboard', dashboardId],
+    queryKey: ['timeBlocks', dashboardId],
     queryFn: () => timeBlockService.getTimeBlocks(dashboardId),
     staleTime: 10 * 1000,
     gcTime: 10 * 1000,
