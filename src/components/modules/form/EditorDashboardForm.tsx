@@ -3,8 +3,8 @@ import { useForm } from 'react-hook-form'
 import Button from '@/components/ui/Button.tsx'
 import Field from '@/components/ui/Field.tsx'
 import Spinner from '@/components/ui/Spiner.tsx'
-import { useDashboardQueryById } from '@/hooks/useDashboardQueryById.ts'
-import { useDashboardUpdate } from '@/hooks/useDashboardUpdate.ts'
+import { useDashboardQueryById } from '@/hooks/dashboard/useDashboardQueryById.ts'
+import { useDashboardUpdate } from '@/hooks/dashboard/useDashboardUpdate.ts'
 import type { TDashboardData } from '@/types/dashboard.types.ts'
 
 interface IProps {

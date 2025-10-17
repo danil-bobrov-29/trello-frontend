@@ -2,7 +2,7 @@ import { useParams } from 'react-router'
 
 import TimeBlockTable from '@/components/modules/TimeBlockTable.tsx'
 import Spinner from '@/components/ui/Spiner.tsx'
-import { useTimeBlockQuery } from '@/hooks/useTimeBlockQuery.ts'
+import { useTimeBlockQuery } from '@/hooks/time-block/useTimeBlockQuery.ts'
 
 const DashboardPage = () => {
   const { dashboardId } = useParams()

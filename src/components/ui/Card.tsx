@@ -4,7 +4,7 @@ import { ChevronDown } from 'lucide-react'
 import { useEffect, useState } from 'react'
 
 import Button from '@/components/ui/Button.tsx'
-import { useCardUpdate } from '@/hooks/useCardUpdate.ts'
+import { useCardUpdate } from '@/hooks/cards/useCardUpdate.ts'
 import type { ICardResponse } from '@/types/card.types.ts'
 
 interface CardProps {

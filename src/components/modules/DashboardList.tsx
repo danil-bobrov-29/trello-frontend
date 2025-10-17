@@ -1,7 +1,7 @@
 import { Link } from 'react-router'
 
 import { DASHBOARD_PAGES } from '@/config/page.config.ts'
-import { useDashboardQuery } from '@/hooks/useDashboardQuery.ts'
+import { useDashboardQuery } from '@/hooks/dashboard/useDashboardQuery'
 import type { IDashboardResponse } from '@/types/dashboard.types.ts'
 
 const DashboardList = () => {

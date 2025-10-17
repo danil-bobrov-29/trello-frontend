@@ -9,8 +9,8 @@ import EditorDashboardModal from '@/components/modules/modal/EditorDashboardModa
 import ActionButton from '@/components/ui/ActionButton.tsx'
 import Actions from '@/components/ui/Actions.tsx'
 import { DASHBOARD_PAGES } from '@/config/page.config.ts'
-import { useClickOutside } from '@/hooks/useClickOutside.ts'
-import { useDeleteDashboard } from '@/hooks/useDeleteDashboard.ts'
+import { useDeleteDashboard } from '@/hooks/dashboard/useDeleteDashboard'
+import { useClickOutside } from '@/hooks/shared/useClickOutside.ts'
 
 interface IProps {
   id: string

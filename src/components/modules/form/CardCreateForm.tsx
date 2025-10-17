@@ -5,7 +5,7 @@ import { forwardRef } from 'react'
 
 import Button from '@/components/ui/Button.tsx'
 import Field from '@/components/ui/Field.tsx'
-import { useCreateCard } from '@/hooks/useCreateCard.ts'
+import { useCreateCard } from '@/hooks/cards/useCreateCard.ts'
 import type { TCardForm } from '@/types/card.types.ts'
 
 interface IProps {

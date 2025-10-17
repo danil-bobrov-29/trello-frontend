@@ -1,6 +1,6 @@
 import DashboardItem from '@/components/modules/DashboardItem.tsx'
 import Spinner from '@/components/ui/Spiner.tsx'
-import { useDashboardQuery } from '@/hooks/useDashboardQuery.ts'
+import { useDashboardQuery } from '@/hooks/dashboard/useDashboardQuery.ts'
 
 const DashboardCards = () => {
   const { items: dashboards, isLoading } = useDashboardQuery()

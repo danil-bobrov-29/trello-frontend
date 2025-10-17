@@ -2,7 +2,7 @@ import { useForm } from 'react-hook-form'
 
 import Button from '@/components/ui/Button.tsx'
 import Field from '@/components/ui/Field.tsx'
-import { useCreateDashboard } from '@/hooks/useCreateDashboard.ts'
+import { useCreateDashboard } from '@/hooks/dashboard/useCreateDashboard.ts'
 import type { TDashboardData } from '@/types/dashboard.types.ts'
 
 const CreateDashboardForm = ({ onClose }: { onClose: () => void }) => {
