@@ -11,7 +11,7 @@ export function useTimeBlockUpdateBatch(dashboardId: string) {
       timeBlockService.updateBatch(dashboardId, data),
     onSuccess: async () => {
       await queryClient.invalidateQueries({
-        queryKey: ['dashboard', dashboardId],
+        queryKey: ['timeBlocks', dashboardId],
       })
     },
   })

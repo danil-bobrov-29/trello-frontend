@@ -47,10 +47,11 @@ const TimeBlockList = ({ timeBlocks }: IProps) => {
 
   const handlerTimeBlockDragEnd = (event: DragEndEvent) => {
     const { active, over } = event
+    console.log('drag end')
 
     if (!over) return
 
-    if (!over || active.id === over.id) return
+    if (active.id === over.id) return
 
     const oldIndex = timeBlocks.findIndex((block) => block.id === active.id)
     const newIndex = timeBlocks.findIndex((block) => block.id === over.id)
@@ -78,7 +79,7 @@ const TimeBlockList = ({ timeBlocks }: IProps) => {
     setActiveId(null)
   }
 
-  const activeTimeBlock = timeBlocks.find((block) => block.id === activeId)
+  const activeTimeBlock = blocks.find((block) => block.id === activeId)
 
   return (
     <DndContext

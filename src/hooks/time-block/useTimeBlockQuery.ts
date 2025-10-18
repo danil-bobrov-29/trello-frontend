@@ -1,20 +1,18 @@
 import type { AxiosResponse } from 'axios'
 
 import { timeBlockService } from '@/services/time-block.service.ts'
-import type { ITimeBlockAllResponse } from '@/types/time-block.types.ts'
+import type { ITimeBlockResponse } from '@/types/time-block.types.ts'
 import { useQuery } from '@tanstack/react-query'
 
 export const useTimeBlockQuery = (dashboardId: string) => {
   const { data, isLoading, isSuccess } = useQuery<
-    AxiosResponse<ITimeBlockAllResponse>
+    AxiosResponse<ITimeBlockResponse[]>
   >({
     queryKey: ['timeBlocks', dashboardId],
     queryFn: () => timeBlockService.getTimeBlocks(dashboardId),
-    staleTime: 10 * 1000,
-    gcTime: 10 * 1000,
-    refetchInterval: 10 * 1000,
-    refetchOnMount: true,
-    refetchOnWindowFocus: true,
+    staleTime: 1000,
+    gcTime: 0,
+    refetchInterval: 5 * 1000, // 5 seconds
   })
 
   return { data: data?.data, isLoading, isSuccess }
